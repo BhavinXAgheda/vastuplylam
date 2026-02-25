@@ -34,6 +34,7 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    overflow-x: hidden;
 }
 
 body {
@@ -50,6 +51,7 @@ body {
     background-size: 20px 20px, 20px 20px, 20px 20px, 20px 20px, 20px 20px, 20px 20px;
     background-position: 0 0, 0 10px, 10px -10px, -10px 0px, 10px -10px, -10px 0px;
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
 /* =========================================
@@ -889,10 +891,25 @@ body {
     .hero-content h1 { font-size: 2.5rem; }
     .features-grid { grid-template-columns: 1fr; }
     .badge-container { flex-direction: column; align-items: center; }
+    
+    /* Prevent horizontal overflow on mobile */
+    body, html {
+        overflow-x: hidden;
+    }
 }
 
 @media (max-width: 576px) {
     .counter-grid { grid-template-columns: 1fr; }
     .hero-buttons { flex-direction: column; }
     .footer-content { grid-template-columns: 1fr; }
+    
+    /* Ensure no horizontal overflow on small screens */
+    body, html {
+        overflow-x: hidden;
+    }
+    
+    .container {
+        width: 95%;
+        padding: 0 0.5rem;
+    }
 }
