@@ -144,12 +144,42 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    /* --- Contact Form Submission Prevent Default (Demo only) --- */
+    /* --- Contact Form Submission --- */
     const contactForm = document.getElementById('contactForm');
     if(contactForm) {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            alert('Thank you! Your message has been sent to Vastu Ply Lam. Our team will contact you shortly.');
+            
+            // Get form data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+            
+            // Construct message
+            const fullMessage = `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage: ${message}`;
+            
+            // Encode for URL
+            const encodedMessage = encodeURIComponent(fullMessage);
+            
+            // WhatsApp URL
+            const whatsappUrl = `https://wa.me/919824888078?text=${encodedMessage}`;
+            
+            // Email URL
+            const emailSubject = encodeURIComponent('Contact from Vastu Ply Lam Website');
+            const emailBody = encodeURIComponent(fullMessage);
+            const emailUrl = `mailto:bhavinagheda0@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+            
+            // Open WhatsApp
+            window.open(whatsappUrl, '_blank');
+            
+            // Open email client
+            window.open(emailUrl, '_blank');
+            
+            // Show success message
+            alert('Thank you! Your message has been sent to WhatsApp and email. Our team will contact you shortly.');
+            
+            // Reset form
             contactForm.reset();
         });
     }
